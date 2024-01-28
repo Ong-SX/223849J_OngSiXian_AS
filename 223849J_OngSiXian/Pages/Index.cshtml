@@ -1,0 +1,35 @@
+﻿@page
+@inject IHttpContextAccessor contxt;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <ul style="list-style-type: none">
+        <li> First Name: @contxt.HttpContext.Session.GetString("FirstName")</li>
+        <li> Last Name: @contxt.HttpContext.Session.GetString("LastName")</li>
+        <li> Email: @contxt.HttpContext.Session.GetString("Email")</li>
+        <li> Mobile Number: @contxt.HttpContext.Session.GetString("PhoneNumber")</li>
+        <li> Billing Address: @contxt.HttpContext.Session.GetString("BillingAddress")</li>
+        <li> Shipping Address: @contxt.HttpContext.Session.GetString("ShippingAddress")</li>
+        <li> Credit Card: @contxt.HttpContext.Session.GetString("CreditCard")</li>
+    </ul>
+
+    <h2>
+        Two Factor Authentication Setting
+    </h2>
+    @if (contxt.HttpContext.Session.GetString("TwoFA") == "True")
+    {
+        <form method="post" class="form-horizontal">
+            Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
+        </form>
+    }
+    else
+    {
+        <form method="post" class="form-horizontal">
+            <button type="submit" class="btn-link btn-bracketed">Enable</button> Disabled
+        </form>
+    }
+</div>

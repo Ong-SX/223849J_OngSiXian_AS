@@ -1,0 +1,115 @@
+﻿@page
+@model _223849J_OngSiXian.Pages.RegistrationModel
+@{
+}
+
+<div class="container">
+    <h2>Membership Registration</h2>
+    <form method="post" asp-antiforgery="true" ValidateRequest="true">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label class="form-label" asp-for="RMember.FirstName">First Name:</label>
+                <input type="text" asp-for="RMember.FirstName" class="form-control" placeholder="Enter first name">
+                <span asp-validation-for="RMember.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="form-label" asp-for="RMember.LastName">Last Name:</label>
+                <input type="text" asp-for="RMember.LastName" class="form-control" placeholder="Enter last name">
+                <span asp-validation-for="RMember.LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.Email">Email Address:</label>
+            <input type="email" asp-for="RMember.Email" class="form-control" placeholder="Enter email">
+            <span asp-validation-for="RMember.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.PhoneNumber">Mobile Number:</label>
+            <input type="text" asp-for="RMember.PhoneNumber" class="form-control" placeholder="Enter mobile number">
+            <span asp-validation-for="RMember.PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.CreditCard">Credit Card Number:</label>
+            <input type="text" asp-for="RMember.CreditCard" class="form-control" placeholder="Enter credit card number">
+            <span asp-validation-for="RMember.CreditCard" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.BillingAddress">Billing Address:</label>
+            <input type="text" asp-for="RMember.BillingAddress" class="form-control" placeholder="Enter billing address">
+            <span asp-validation-for="RMember.BillingAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.ShippingAddress">Shipping Address:</label>
+            <input type="text" asp-for="RMember.ShippingAddress" class="form-control" placeholder="Enter shipping address">
+            <span asp-validation-for="RMember.ShippingAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.Photo">Photo:</label>
+            <input type="file" asp-for="RMember.Photo" class="form-control" placeholder="Upload a jpg photo" accept=".jpg">
+            <span asp-validation-for="RMember.Photo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.Password">Password:</label>
+            <input type="password" id="password" onkeyup="validate()" asp-for="RMember.Password" class="form-control" placeholder="Enter password">
+            <span asp-validation-for="RMember.Password" id="passwordError" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="RMember.ConfirmPassword">Confirm Password:</label>
+            <input type="password" asp-for="RMember.ConfirmPassword" class="form-control" placeholder="Enter confirm password">
+            <span asp-validation-for="RMember.ConfirmPassword" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function validate() {
+        //Extract data from password field
+        var password = document.getElementById('password').value;
+
+        //Check if password is less than 12 characters, show error
+        if (password.length < 12) {
+            document.getElementById("passwordError").innerHTML = "Password Length Must be at Least 12 Characters";
+            document.getElementById("passwordError").style.color = "Red";
+            return ("too_short");
+        }
+        //Check if password has a min of 1 numeral, show error
+        else if (password.search(/[0-9]/) == -1) {
+            document.getElementById("passwordError").innerHTML = "Password require at least 1 number";
+            document.getElementById("passwordError").style.color = "Red";
+            return ("no_number");
+        }
+        //Check if password has a min of one uppercase, show error
+        else if (password.search(/[A-Z]/) == -1) {
+            document.getElementById("passwordError").innerHTML = "Password require at least 1 uppercase";
+            document.getElementById("passwordError").style.color = "Red";
+            return ("no_uppercase");
+        }
+        //Check if password has a min of one lowercase, show error
+        else if (password.search(/[a-z]/) == -1) {
+            document.getElementById("passwordError").innerHTML = "Password require at least 1 lowercase";
+            document.getElementById("passwordError").style.color = "Red";
+            return ("no_lowercase");
+        }
+        //Check if password has a min of one special character, show error
+        else if (password.search(/[^a-zA-Z0-9]/) == -1) {
+            document.getElementById("passwordError").innerHTML = "Password require at least 1 special character";
+            document.getElementById("passwordError").style.color = "Red";
+            return ("no_specialCharacter");
+        }
+        //If successful password
+        document.getElementById("passwordError").innerHTML = "Excellent!";
+        document.getElementById("passwordError").style.color = "Green";
+    }
+</script>

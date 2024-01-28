@@ -1,0 +1,44 @@
+﻿@page
+@model _223849J_OngSiXian.Pages.LoginModel
+@{
+}
+
+<div class="container">
+    <h2>Membership Login</h2>
+    <form method="post" asp-antiforgery="true" ValidateRequest="true">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="LMember.Email">Email Address:</label>
+            <input type="email" asp-for="LMember.Email" class="form-control" placeholder="Enter email">
+            <span asp-validation-for="LMember.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="LMember.Password">Password:</label>
+            <input type="password" asp-for="LMember.Password" class="form-control" placeholder="Enter password">
+            <span asp-validation-for="LMember.Password" class="text-danger"></span>
+        </div>
+
+        <div class="checkbox">
+            <label><input type="checkbox" asp-for="LMember.RememberMe"> Remember me</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Login</button>
+
+        <input type="hidden" name="captcha" id="captchaInput" />
+    </form>
+    <br />
+    <div><a asp-page="/ForgetPassword">Forget password?</a></div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LdYUl4pAAAAAPcYIE93cK4BJChCyxUrM46AIMmD"></script>
+<script>
+    grecaptcha.ready(function () {
+        window.grecaptcha.execute('6LdYUl4pAAAAAPcYIE93cK4BJChCyxUrM46AIMmD', { action: 'login' }).then(function (token) {
+            $("#captchaInput").val(token);
+        });
+    });
+</script>
+
+
