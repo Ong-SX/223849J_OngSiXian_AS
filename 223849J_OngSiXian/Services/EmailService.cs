@@ -33,7 +33,7 @@ namespace _223849J_OngSiXian.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("sixianong@gmail.com", "bookwormsonline"),
+                From = new EmailAddress("keyon.cummings39@ethereal.email", "bookwormsonline"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
